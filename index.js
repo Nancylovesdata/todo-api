@@ -2,29 +2,17 @@
 // const express = require('express');
 
 import express from "express";
+import bodyParser from "body-parser";
+import todosRoutes from "./routes/todos.routes.js"
 
 //Create express app
 const app = express();
 
-// Define your route
-// app.get( '/', (req,res)=>{
-//     console.log(req.query,req.headers);
-//     res.send("Welcome eee");
-// });
+//Apply middlewares
+app.use(bodyParser.json());
 
-
-app.get( '/ping', (req,res)=>{
-    console.log(req.query,req.headers);
-    res.send("Ping pong sap!");
-});
-
-// How to serve a file, like let your html file
-app.get('/file', (req, res) =>{
-    console.log(process.cwd())
-    res.sendFile(process.cwd() +"/index.html");
-
-});
-
+// Use your routes
+app.use(todosRoutes)
 
 //Now it becomes a server after the above code. 
 //Next is to tell the app to listern for an incoming request

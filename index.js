@@ -3,6 +3,7 @@
 
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import todosRoutes from "./routes/todos.routes.js"
 
 //Create express app
@@ -10,6 +11,8 @@ const app = express();
 
 //Apply middlewares
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cors());
 
 // Use your routes
 app.use(todosRoutes)
